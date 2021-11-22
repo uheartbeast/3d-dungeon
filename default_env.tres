@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[resource]
+background_sky = SubResource( 1 )
+background_color = Color( 0.117647, 0.117647, 0.117647, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_sky_contribution = 0.0
+dof_blur_far_distance = 3.0
+dof_blur_far_transition = 3.0
+dof_blur_near_distance = 1.5
+dof_blur_near_amount = 0.2
