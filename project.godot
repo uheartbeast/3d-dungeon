@@ -35,7 +35,7 @@ window/size/width=480
 window/size/height=270
 window/size/test_width=1280
 window/size/test_height=720
-window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -82,6 +82,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/filters/use_nearest_mipmap_filter=true
-quality/filters/use_debanding=true
 environment/default_environment="res://default_env.tres"

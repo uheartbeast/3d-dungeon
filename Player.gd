@@ -1,14 +1,10 @@
 extends Spatial
 
-onready var omniLight: = $OmniLight
 onready var tween: = $Tween
 onready var forward: = $RayForward
 onready var back: = $RayBack
 onready var right: = $RayRight
 onready var left: = $RayLeft
-
-func _ready():
-	omniLight.show()
 
 func _physics_process(delta):
 	if Input.is_action_pressed("forward") and collision_check(forward):
