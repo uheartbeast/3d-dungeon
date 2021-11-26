@@ -46,7 +46,6 @@ func tween_translation(change):
 	)
 	tween.start()
 	yield(tween, "tween_completed")
-	print(translation)
 
 func tween_rotation(change):
 	tween.interpolate_property(

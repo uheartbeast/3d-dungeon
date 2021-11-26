@@ -35,6 +35,7 @@ window/size/width=480
 window/size/height=270
 window/size/test_width=1280
 window/size/test_height=720
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [input]
