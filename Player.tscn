@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Step"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.25, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1, 0.5 ), Vector3( 0.02, 1.02, 0.5 ), Vector3( 0, 1, 0.5 ), Vector3( -0.02, 1.02, 0.5 ), Vector3( 0, 1, 0.5 ) ]
+}
 
 [node name="Player" type="Spatial"]
 script = ExtResource( 1 )
@@ -57,3 +89,7 @@ light_energy = 2.0
 spot_attenuation = 2.37841
 spot_angle = 64.36
 spot_angle_attenuation = 3.03143
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/Step = SubResource( 2 )

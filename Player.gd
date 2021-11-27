@@ -31,6 +31,7 @@ func _physics_process(delta):
 		set_physics_process(false)
 		yield(tween_rotation(-PI/2), "completed")
 		set_physics_process(true)
+		print(rotation_degrees)
 
 func collision_check(direction):
 	return direction.is_colliding()
@@ -40,6 +41,7 @@ func get_direction(direction):
 	return direction.get_collider().global_transform.origin - global_transform.origin
 
 func tween_translation(change):
+	$AnimationPlayer.play("Step")
 	tween.interpolate_property(
 		self, "translation", translation, translation + change,
 		0.5, Tween.TRANS_QUAD, Tween.EASE_IN_OUT

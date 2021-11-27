@@ -4,7 +4,6 @@
 
 [resource]
 background_sky = SubResource( 1 )
-background_color = Color( 0.117647, 0.117647, 0.117647, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_sky_contribution = 0.0
 dof_blur_far_distance = 3.0
