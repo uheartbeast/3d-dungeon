@@ -1,40 +1,16 @@
 extends Spatial
 
+onready var timerprocessor: = $Timer
 onready var tween: = $Tween
 onready var forward: = $RayForward
 onready var back: = $RayBack
 onready var right: = $RayRight
 onready var left: = $RayLeft
-
-func _physics_process(delta):
-	if Input.is_action_pressed("forward") and collision_check(forward):
-		set_physics_process(false)
-		yield(tween_translation(get_direction(forward)), "completed")
-		set_physics_process(true)
-	elif Input.is_action_pressed("back") and collision_check(back):
-		set_physics_process(false)
-		yield(tween_translation(get_direction(back)), "completed")
-		set_physics_process(true)
-	elif Input.is_action_pressed("strafe_left") and collision_check(left):
-		set_physics_process(false)
-		yield(tween_translation(get_direction(left)), "completed")
-		set_physics_process(true)
-	elif Input.is_action_pressed("strafe_right") and collision_check(right):
-		set_physics_process(false)
-		yield(tween_translation(get_direction(right)), "completed")
-		set_physics_process(true)
-	elif Input.is_action_pressed("turn_left"):
-		set_physics_process(false)
-		yield(tween_rotation(PI/2), "completed")
-		set_physics_process(true)
-	elif Input.is_action_pressed("turn_right"):
-		set_physics_process(false)
-		yield(tween_rotation(-PI/2), "completed")
-		set_physics_process(true)
-		print(rotation_degrees)
-
 func collision_check(direction):
-	return direction.is_colliding()
+	if direction != null:
+		return direction.is_colliding()
+	else:
+		return false
 
 func get_direction(direction):
 	if not direction is RayCast: return
@@ -56,3 +32,34 @@ func tween_rotation(change):
 	)
 	tween.start()
 	yield(tween, "tween_completed")
+
+
+func _on_Timer_timeout() -> void:
+	var GO_W := Input.is_action_pressed("forward")
+	var GO_S := Input.is_action_pressed("back")
+	var GO_A := Input.is_action_pressed("strafe_left")
+	var GO_D := Input.is_action_pressed("strafe_right")
+	var TURN_Q := Input.is_action_pressed("turn_left")
+	var TURN_E := Input.is_action_pressed("turn_right")
+
+	var ray_dir
+	var turn_dir = int(TURN_Q) - int(TURN_E)
+
+
+	if GO_W: 
+		ray_dir = forward
+	elif GO_S: 
+		ray_dir = back
+	elif GO_A: 
+		ray_dir = left
+	elif GO_D: 
+		ray_dir = right
+	elif turn_dir:
+		timerprocessor.stop()
+		yield(tween_rotation(PI/2 * turn_dir), "completed")
+		timerprocessor.start()
+
+	if collision_check(ray_dir):
+		timerprocessor.stop()
+		yield(tween_translation(get_direction(ray_dir)), "completed")
+		timerprocessor.start()

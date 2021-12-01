@@ -93,3 +93,10 @@ spot_angle_attenuation = 3.03143
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/Step = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
