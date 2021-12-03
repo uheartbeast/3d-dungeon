@@ -11,10 +11,10 @@ onready var bottomFace: = $BottomFace
 func update_faces(cell_list) -> void:
 	var my_grid_position = Vector2(translation.x/Globals.GRID_SIZE, translation.z/2)
 	if cell_list.has(my_grid_position + Vector2.RIGHT):
-		eastFace.hide()
+		eastFace.queue_free()
 	if cell_list.has(my_grid_position + Vector2.LEFT):
-		westFace.hide()
+		westFace.queue_free()
 	if cell_list.has(my_grid_position + Vector2.DOWN):
-		southFace.hide()
+		southFace.queue_free()
 	if cell_list.has(my_grid_position + Vector2.UP):
-		northFace.hide()
+		northFace.queue_free()
